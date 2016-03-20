@@ -1,0 +1,58 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 50px 0 0 0;
+  font: 15px/1.6 Helvetica, Arial, sans-serif;
+}
+
+section {
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  padding: 75px;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0 0 25px 0;
+}
+
+#actions {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  height: 50px;
+  padding: 0 25px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: white;
+}
+
+.chart {
+  /*border: 1px dotted #ddd;*/
+}
+
+.chart .axis text {
+  font: 9px sans-serif;
+}
+
+.chart .axis path,
+.chart .axis line {
+  fill: none;
+  stroke: RGB(230, 237, 244);
+  stroke-width: 1.5px;
+  shape-rendering: crispEdges;
+}
+
+.chart .axis path {
+  display: none;
+}

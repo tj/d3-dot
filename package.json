@@ -1,0 +1,33 @@
+{
+  "name": "d3-dot",
+  "version": "1.0.0",
+  "description": "D3 dot chart",
+  "author": "TJ Holowaychuk <tj@tjholowaychuk.com>",
+  "main": "build/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "make build"
+  },
+  "keywords": [
+    "d3",
+    "dot",
+    "chart",
+    "graph"
+  ],
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "devDependencies": {
+    "d3-tipy": "^1.0.0",
+    "offset": "0.0.1",
+    "react-fatigue-dev": "github:tj/react-fatigue-dev#49fec29"
+  },
+  "dependencies": {
+    "d3": "^3.5.16"
+  },
+  "files": [
+    "build"
+  ]
+}
