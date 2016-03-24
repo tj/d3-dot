@@ -11,7 +11,7 @@ const gen = n => {
 
   for (var i = n; i; i--) {
     data.push({
-      time: new Date(Date.now() - (i * 3600000)),
+      bin: new Date(Date.now() - (i * 3600000)),
       value: Math.random() * 5 | 0
     })
   }

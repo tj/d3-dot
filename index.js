@@ -153,7 +153,7 @@ export default class DotChart {
         .call(this.xAxis)
     }
 
-    this.xBisect = d3.bisector(d => d.time).left
+    this.xBisect = d3.bisector(d => d.bin).left
   }
 
   /**
@@ -163,7 +163,7 @@ export default class DotChart {
   renderAxis(data, options) {
     const { chart, x, xAxis, nice, ease } = this
 
-    const xd = x.domain(d3.extent(data, d => d.time))
+    const xd = x.domain(d3.extent(data, d => d.bin))
 
     if (nice) {
       xd.nice()
@@ -202,7 +202,7 @@ export default class DotChart {
 
     // update
     dot.transition().ease(ease)
-      .attr('cx', d => x(d.time) + width / 2)
+      .attr('cx', d => x(d.bin) + width / 2)
       .attr('cy', h / 2)
       .attr('r', d => z(d.value))
       .style('fill', d => color(d.value))
@@ -219,7 +219,7 @@ export default class DotChart {
       .attr('class', 'overlay')
 
     // update
-    overlay.attr('x', d => x(d.time))
+    overlay.attr('x', d => x(d.bin))
       .attr('width', width)
       .attr('height', h)
       .style('fill', 'transparent')
