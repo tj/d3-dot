@@ -229,7 +229,10 @@ export default class DotChart {
   }
 
   /**
-   * Render the chart against the given `data`.
+   * Render the chart against the given `data` which has the shape:
+   *
+   *  [{ bin: Date, value: int }]
+   *
    */
 
   render(data, options = {}) {
