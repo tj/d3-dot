@@ -16,7 +16,7 @@ const defaults = {
   height: 80,
 
   // margin
-  margin: { top: 0, right: 0, bottom: 40, left: 0 },
+  margin: { top: 0, right: 20, bottom: 40, left: 20 },
 
   // axis enabled
   axis: true,
