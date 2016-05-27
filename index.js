@@ -203,7 +203,7 @@ export default class DotChart {
 
     if (type == 'bar') {
       const barWidth = (w / data.length) - barPadding
-      if (barWidth < 1) throw new Error('DotChart is too small for the amount of data points provided')
+      if (barWidth < 0.5) throw new Error('DotChart is too small for the amount of data points provided')
 
       // enter
       dot.enter().append('rect')
@@ -213,7 +213,7 @@ export default class DotChart {
       // update
       dot.transition().ease(ease)
         .attr('x', d => x(d.bin) + width / 2)
-        .attr('y', d => h - z(d.value) / 2)
+        .attr('y', d => h / 2 - z(d.value) / 2)
         .attr('height', d => z(d.value))
         .attr('width', barWidth)
         .style('fill', d => color(d.value))
