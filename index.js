@@ -33,8 +33,14 @@ const defaults = {
   // easing function for transitions
   ease: 'linear',
 
-  // dot size range
+  // dot size range, becomes height range for 'bar' type
   size: [2, 10],
+
+  // type of chart: 'dot' or 'bar'
+  type: 'dot',
+
+  // bar padding for 'bar' type
+  barPadding: 1,
 
   // color range
   color: ['rgb(230, 237, 244)', 'rgb(243, 43, 101)'],
@@ -181,7 +187,7 @@ export default class DotChart {
    */
 
   renderDots(data) {
-    const { chart, x, z, ease, size, color } = this
+    const { chart, x, z, ease, size, color, type, barPadding } = this
     const [w, h] = this.dimensions()
 
     const width = w / data.length
@@ -195,17 +201,35 @@ export default class DotChart {
     const dot = chart.selectAll('.dot')
       .data(data)
 
-    // enter
-    dot.enter().append('circle')
-      .attr('class', 'dot')
-      .style('fill', d => color(d.value))
+    if (type == 'bar') {
+      const barWidth = (w / data.length) - barPadding
+      if (barWidth < 1) throw new Error('DotChart is too small for the amount of data points provided')
 
-    // update
-    dot.transition().ease(ease)
-      .attr('cx', d => x(d.bin) + width / 2)
-      .attr('cy', h / 2)
-      .attr('r', d => z(d.value))
-      .style('fill', d => color(d.value))
+      // enter
+      dot.enter().append('rect')
+        .attr('class', 'dot')
+        .style('fill', d => color(d.value))
+
+      // update
+      dot.transition().ease(ease)
+        .attr('x', d => x(d.bin) + width / 2)
+        .attr('y', d => h - z(d.value) / 2)
+        .attr('height', d => z(d.value))
+        .attr('width', barWidth)
+        .style('fill', d => color(d.value))
+    } else {
+      // enter
+      dot.enter().append('circle')
+        .attr('class', 'dot')
+        .style('fill', d => color(d.value))
+
+      // update
+      dot.transition().ease(ease)
+        .attr('cx', d => x(d.bin) + width / 2)
+        .attr('cy', h / 2)
+        .attr('r', d => z(d.value))
+        .style('fill', d => color(d.value))
+    }
 
     // exit
     dot.exit().remove()

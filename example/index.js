@@ -33,7 +33,7 @@ class App extends Component {
 
     this.b = new Chart({
       target: this.refs.b,
-      width: 130,
+      width: 200,
       height: 80,
       size: [2, 4],
       mouseover: tip.show,
@@ -41,18 +41,21 @@ class App extends Component {
     })
 
     this.c = new Chart({
+      margin: { top: 0, right: 40, bottom: 50, left: 40 },
       target: this.refs.c,
-      axisPadding: 5,
+      axisPadding: 20,
+      barPadding: 1,
       tickSize: 3,
-      size: [2, 7],
+      size: [2, 30],
       mouseover: tip.show,
       mouseout: tip.hide,
-      axis: false
+      // axis: false,
+      type: 'bar'
     })
 
     this.a.render(gen(24))
     this.b.render(gen(10))
-    this.c.render(gen(30))
+    this.c.render(gen(80))
   }
 
   componentDidUpdate() {
@@ -63,7 +66,7 @@ class App extends Component {
     const n = Math.max(15, Math.random() * 30 | 0)
     this.a.update(gen(n))
     this.b.update(gen(10))
-    this.c.update(gen(30))
+    this.c.update(gen(150))
   }
 
   render() {
